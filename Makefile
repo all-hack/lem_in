@@ -26,7 +26,7 @@ FILES += t_farm_infa
 
 FILES += ft_chr_count
 
-FILES += 
+FILES += t_room_infa
 
 FILES += 
 

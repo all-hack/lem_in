@@ -25,9 +25,10 @@ t_farm	*t_farm_build()
 	farm->parsing[1] = parse_rooms;
 	farm->parsing[2] = parse_links;
 	farm->parsing[3] = NULL;
-	// farm->index = -1;
-	// farm->chr = NULL;
-	// farm->invalid = NULL;
+	farm->start = NULL;
+	farm->end = NULL;
+	farm->path = NULL;
+	farm->spawns = NULL;
 	// farm->presentation_path = NULL;
 	// farm->filename = NULL;
 	// farm->pre_seed = NULL;
@@ -42,9 +43,10 @@ void	t_farm_print(t_farm *farm)
 	ft_printf("\n");
 	ft_printf("t_farm:\n");
 	ft_printf("farm->num_ants: %d\n", farm->num_ants);
+	ft_printf("farm->start: %s\n", farm->start);
+	t_rooms_print(farm->spawns);
+	ft_printf("farm->end: %s\n", farm->end);
 	ft_printf("farm->map:\n%s", farm->map);
-	// ft_printf("farm->presentation_path: %s\n", farm->presentation_path);
-	// ft_printf("farm->filename: %s\n", farm->filename);
 	// ft_printf("farm->index: %d\n", farm->index);
 	// ft_printf("farm->chr: %s\n", farm->chr);
 	// if (farm->invalid)
@@ -81,8 +83,8 @@ void	t_farm_destroy(t_farm **farm)
 	{
 		if (*farm)
 		{
-			// ft_strdel(&(*farm)->access_path);
-			// ft_strlist_del(&(*farm)->invalid);
+			ft_strdel(&(*farm)->map);
+			t_room_destroy_all(&(*farm)->spawns);
 			free(*farm);
 			*farm = NULL;
 		}

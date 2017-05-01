@@ -22,29 +22,23 @@
 # include <libftprintf.h>
 # include "libft.h"
 
-// typedef	struct 	s_clip
-// {
-// 	char		*ssignal;
-// 	char		*lsignal;
-// 	char		*sflags;
-// 	char		*valid_sflags;
-// 	char		*lflags;
-// 	char		*valid_lflags[2];
-// 	char		**args;	
-// 	int			(*arg_validator)(char*);	
-// 	void		(*sflags_apply[6]) (struct 	s_clip *, t_context *);
-// 	void		(*lflags_apply[2]) (struct 	s_clip *, t_context *);
-// 	void		(*error)(int, char*);
-
-// }				t_clip;
+typedef	struct 	s_room
+{
+	char	*name;
+	struct s_room *nxt_spawn;
+	char	**connections;
+}				t_room;
 
 typedef	struct 	s_farm
 {
 	int		num_ants;
 	char	*map;
+	char	*start;
+	char	*end;
+	char	**path;
+	t_room	*spawns;
 	int		(*parsing[4]) (struct s_farm *farm, int *phase, char *line);
 }				t_farm;
-
 
 typedef struct	s_line_elem
 {
@@ -74,6 +68,19 @@ int				parse_links(t_farm *farm, int *phase, char *line);
 
 int				syntax_link(char *line);
 int				syntax_room(char *line);
+
+t_room			*t_room_build(char *name);
+void			t_room_print(t_room *room);
+void			t_room_destroy(t_room **room);
+void			t_room_add(t_room *head, t_room *room);
+void			t_rooms_print(t_room *room);
+t_room			*t_room_get(t_room *head, char *name);
+int				t_room_valid_link(t_farm *farm, char *start, char *dest);
+void			t_room_destroy_all(t_room **room);
+
+
+
+
 
 
 # include											<stdio.h>
