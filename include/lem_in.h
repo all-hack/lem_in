@@ -66,6 +66,9 @@ int				parse_ants(t_farm *farm, int *phase, char *line);
 int				parse_rooms(t_farm *farm, int *phase, char *line);
 int				parse_links(t_farm *farm, int *phase, char *line);
 
+void			store_room(t_farm *farm, char *line, int flag);
+void			store_link(t_farm *farm, char *left, char *right);
+
 int				syntax_link(char *line);
 int				syntax_room(char *line);
 
