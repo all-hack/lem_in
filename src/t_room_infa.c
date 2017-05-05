@@ -42,7 +42,7 @@ void	t_room_print(t_room *room)
 			ft_printf("-> %s\n", *conect);
 	}
 	else
-		printf("%s\n", "-> none");
+		ft_printf("%s\n", "-> none");
 }
 
 void	t_rooms_print(t_room *room)
@@ -54,7 +54,7 @@ void	t_rooms_print(t_room *room)
 			room = room->nxt_spawn;
 		}
 	else
-		printf("no rooms");
+		ft_printf("no rooms");
 }
 
 void	t_room_destroy(t_room **room)

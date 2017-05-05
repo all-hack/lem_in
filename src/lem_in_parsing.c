@@ -18,7 +18,7 @@ int		parse_ants(t_farm *farm, int *phase, char *line)
 	{
 		if (ft_strsearch_ov(line, "0123456789"))
 		{
-			printf("ant parsed\n");
+			// printf("ant parsed\n");
 			farm->num_ants = ft_atoi(line);
 			*phase = 1;
 			farm->map = ft_fstrmcatf(farm->map, ft_strmcat(line, "\n"));
@@ -56,7 +56,7 @@ int		parse_rooms(t_farm *farm, int *phase, char *line)
 		else if (syntax_link(line) == 1)
 		{
 			*phase = 2;
-			printf("link found starting link phase\n");
+			// printf("link found starting link phase\n");
 			return (1);
 		}
 		else if (syntax_room(line) == 1)
@@ -68,7 +68,7 @@ int		parse_rooms(t_farm *farm, int *phase, char *line)
 		}
 		else
 		{
-			printf("room error\n");
+			// printf("room error\n");
 			return (-1);
 		}
 	}
@@ -84,7 +84,7 @@ int		parse_links(t_farm *farm, int *phase, char *line)
 	{
 		if (*line == '#')
 		{
-			printf("link comment found\n");
+			// printf("link comment found\n");
 			farm->map = ft_fstrmcatf(farm->map, ft_strmcat(line, "\n"));
 		}
 		else if (syntax_link(line))
@@ -94,7 +94,7 @@ int		parse_links(t_farm *farm, int *phase, char *line)
 			// t_room_print(farm->spawns);
 			if (t_room_valid_link(farm, left, right))
 			{
-				printf("link parsed\n");
+				// printf("link parsed\n");
 				store_link(farm, left, right);
 				farm->map = ft_fstrmcatf(farm->map, ft_strmcat(line, "\n"));
 				return (0);
@@ -102,7 +102,7 @@ int		parse_links(t_farm *farm, int *phase, char *line)
 		}
 		else
 		{
-			printf("link error\n");
+			// printf("link error\n");
 			return (-1);
 		}
 	}

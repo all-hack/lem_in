@@ -20,7 +20,7 @@ PRINTF_PATH = ft_printf
 
 FILES = get_next_line
 
-FILES += lem_in_helper lem_in_parsing lem_in_syntax
+FILES += lem_in_helper lem_in_parsing lem_in_syntax lem_in_store
 
 FILES += t_farm_infa
 

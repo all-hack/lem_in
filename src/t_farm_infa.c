@@ -44,9 +44,9 @@ void	t_farm_print(t_farm *farm)
 	ft_printf("t_farm:\n");
 	ft_printf("farm->num_ants: %d\n", farm->num_ants);
 	ft_printf("farm->start: %s\n", farm->start);
-	t_rooms_print(farm->spawns);
 	ft_printf("farm->end: %s\n", farm->end);
 	ft_printf("farm->map:\n%s", farm->map);
+	t_rooms_print(farm->spawns);
 	// ft_printf("farm->index: %d\n", farm->index);
 	// ft_printf("farm->chr: %s\n", farm->chr);
 	// if (farm->invalid)
