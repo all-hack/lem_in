@@ -21,6 +21,7 @@ t_room	*t_room_build(char *name)
 		helper_error("Error: failed to mallocate for t_room\n");
 	room->name = name;
 	room->nxt_spawn = NULL;
+	room->prv_spawn = NULL;
 	room->connections = NULL;
 	return (room);
 }
@@ -33,6 +34,7 @@ void	t_room_print(t_room *room)
 	ft_printf("t_room:\n");
 	ft_printf("room->name: %s\n", room->name);
 	ft_printf("room->nxt_spawn: %p\n", room->nxt_spawn);
+	ft_printf("room->prv_spawn: %p\n", room->prv_spawn);
 	ft_printf("connections:\n");
 	if (room->connections)
 	{
@@ -81,12 +83,14 @@ void	t_room_destroy_all(t_room **room)
 }
 
 void	t_room_add(t_room *head, t_room *room)
-{
+{	
 	if (head && room)
 	{
 		while (head->nxt_spawn)
 			head = head->nxt_spawn;
 		head->nxt_spawn = room;
+		if (room)
+			room->prv_spawn = head;
 	}
 }
 

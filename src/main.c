@@ -91,6 +91,114 @@ int	find_path(t_farm *farm, char *room)
 
 
 
+int	waxing_state(t_farm *farm, int path_i, int trailing_ant, int *end_ants)
+{
+	t_room *room;
+
+	room = t_room_get(farm->spawns, farm->path[path_i]);
+	if (trailing_ant > 1)
+	{
+		if (waxing_state(farm, path_i + 1, trailing_ant - 1, end_ants) == 1)
+			ft_printf(" ");
+	}
+	else if (ft_strcmp(farm->end, room->name) == 0)
+		*end_ants = 1;
+		
+	ft_printf("L%d-%s", trailing_ant, room->name);
+	return (1);
+}
+
+
+int	waning_state(t_farm *farm, int path_i, int trailing_ant, int edge)
+{
+	t_room *room;
+
+	// printf("path_i: %d\n", path_i);
+	if (path_i >= edge)
+		return (0);
+
+	room = t_room_get(farm->spawns, farm->path[path_i]);
+	
+	if (path_i < edge)
+		if(waning_state(farm, path_i + 1, trailing_ant - 1, edge) == 1)
+			ft_printf(" ");
+	
+	ft_printf("L%d-%s", trailing_ant, room->name);
+
+
+	return (1);
+
+
+}
+
+
+
+
+
+
+
+void	move_ants(t_farm *farm)
+{
+	int	end_ants;
+	int	edge;
+	int	trailing_ant;
+
+	end_ants = 0;
+	edge = ft_strlist_len(farm->path);
+	trailing_ant = 1;
+
+	printf("ants: %d\n", farm->num_ants);
+	printf("edge: %d\n", edge);
+
+	while (end_ants < farm->num_ants)
+	{
+		if (end_ants == 0)
+		{
+			if (waxing_state(farm, 0, trailing_ant++, &end_ants) == 1)
+				ft_printf("\n");
+		}
+		else if (end_ants > 0 && farm->num_ants - end_ants > edge)
+		{
+			printf("constant state trailing(%d), end(%d)\n", trailing_ant, end_ants);
+			trailing_ant++;
+			end_ants++;
+		}
+		else if (farm->num_ants - end_ants <= edge)
+		{
+			// printf("down state -> num(%d) - end(%d): %d", farm->num_ants, end_ants, farm->num_ants - end_ants);
+			// printf(" trailing(%d)\n", trailing_ant);
+			waning_state(farm, edge - (farm->num_ants - end_ants), trailing_ant, edge);
+			ft_printf("\n");
+			end_ants++;
+		}
+		
+		// trailing_ant++;
+		// if (trailing_ant > 10)
+		// 	break;
+	}
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -121,9 +229,13 @@ int	main(void){
 	
 	int path_res = -1;
 	path_res = find_path(farm, farm->start);
+	farm->path = ft_strlist_remove(farm->path, farm->start);
 	printf("path found: %d\n", path_res);
 	printf("path-->\n");
 	ft_strlist_print(farm->path);
+	printf("move_ants: \n");
+	move_ants(farm);
+	
 
 	// t_room	*a;
 	// t_room	*b;

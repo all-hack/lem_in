@@ -26,6 +26,7 @@ typedef	struct 	s_room
 {
 	char	*name;
 	struct s_room *nxt_spawn;
+	struct s_room *prv_spawn;
 	char	**connections;
 }				t_room;
 
