@@ -22,7 +22,7 @@ FILES = get_next_line
 
 FILES += lem_in_helper lem_in_parsing lem_in_syntax lem_in_store
 
-FILES += t_farm_infa
+FILES += t_farm_infa lem_in_path
 
 FILES += ft_chr_count
 
@@ -68,6 +68,10 @@ dev : fclean $(B_PATH) $(OBJ) libft.a libftprintf.a
 leak : fclean $(B_PATH) $(OBJ) libft.a  libftprintf.a
 	@echo "\x1b[31malloc wrap is turned on\x1b[36m"
 	gcc $(LEAKF) -o $(NAME) $(OBJ) $(LIB_COMP)
+
+leaks: re
+	@ osascript -e 'tell application "iTerm2" to activate' -e '\
+		tell application "System Events" to tell process "iTerm2" to keystroke "D" using command down' -e 'tell application "System Events" to tell process "iTerm" to keystroke "while true ;do clear; leaks $(NAME); sleep 2 ;done"' -e 'tell application "System Events" to tell process "iTerm" to key code 52'
 
 libft.a : 
 	@printf "\x1b[32m \ncompiling libft.... \x1b[36m"

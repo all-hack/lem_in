@@ -73,6 +73,12 @@ void			store_link(t_farm *farm, char *left, char *right);
 int				syntax_link(char *line);
 int				syntax_room(char *line);
 
+int				find_path(t_farm *farm, char *room);
+int				waxing_state(t_farm *farm, int path_i, int trailing_ant, int *end_ants);
+int				waning_state(t_farm *farm, int path_i, int trailing_ant, int edge);
+int				constant_state(t_farm *farm, int path_i, int trailing_ant, int edge);
+void			move_ants(t_farm *farm);
+
 t_room			*t_room_build(char *name);
 void			t_room_print(t_room *room);
 void			t_room_destroy(t_room **room);

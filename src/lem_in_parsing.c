@@ -38,15 +38,16 @@ int		parse_rooms(t_farm *farm, int *phase, char *line)
 			farm->map = ft_fstrmcatf(farm->map, ft_strmcat(line, "\n"));
 			ft_strdel(&line);
 			get_next_line(0, &line);
-			store_room(farm, line, 1);
+			if (syntax_room(line) == 1)
+				store_room(farm, line, 1);
 		}
 		else if (ft_strcmp(line, "##end") == 0)
 		{
-			// printf("end found\n");
 			farm->map = ft_fstrmcatf(farm->map, ft_strmcat(line, "\n"));
 			ft_strdel(&line);
 			get_next_line(0, &line);
-			store_room(farm, line, 2);
+			if (syntax_room(line) == 1)
+				store_room(farm, line, 2);
 		}
 		else if (*line == '#')
 		{

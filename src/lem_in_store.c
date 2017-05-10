@@ -19,6 +19,10 @@ void	store_room(t_farm *farm, char *line, int flag)
 	
 	room = ft_strsub(line, 0, ft_strchr(line, ' ') - line);
 	
+	if (!line)
+		helper_error("Error\n");
+	if (line[0] == '#')
+		helper_error("Error\n");
 	if (farm->spawns)
 		t_room_add(farm->spawns, t_room_build(room));
 	else

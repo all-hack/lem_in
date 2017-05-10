@@ -14,7 +14,7 @@
 
 void	helper_error(char *message)
 {
-	write(2, message, ft_strlen(message));
+	write(1, message, ft_strlen(message));
 	exit(1);
 }
 
