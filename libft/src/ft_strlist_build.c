@@ -19,7 +19,7 @@ char	**ft_strlist_build(size_t size)
 
 	i = 0;
 	if (!(strlist = (char **)malloc(sizeof(char*) * (size + 1))))
-		write(2, "Error: failed to mallocate char **\n", 
+		write(2, "Error: failed to mallocate char **\n",
 			ft_strlen("Error: failed to mallocate char **\n"));
 	if (strlist)
 		strlist[size] = NULL;

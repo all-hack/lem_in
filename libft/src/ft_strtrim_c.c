@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char *ft_strtrim_c(char *s, char c)
+char	*ft_strtrim_c(char *s, char c)
 {
 	size_t	start;
 	size_t	length;
@@ -30,11 +30,3 @@ char *ft_strtrim_c(char *s, char c)
 	}
 	return (NULL);
 }
-
-
-
-
-
-
-
-

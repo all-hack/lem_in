@@ -22,15 +22,15 @@
 # include <libftprintf.h>
 # include "libft.h"
 
-typedef	struct 	s_room
+typedef	struct	s_room
 {
-	char	*name;
-	struct s_room *nxt_spawn;
-	struct s_room *prv_spawn;
-	char	**connections;
+	char			*name;
+	struct s_room	*nxt_spawn;
+	struct s_room	*prv_spawn;
+	char			**connections;
 }				t_room;
 
-typedef	struct 	s_farm
+typedef	struct	s_farm
 {
 	int		num_ants;
 	char	*map;
@@ -40,19 +40,6 @@ typedef	struct 	s_farm
 	t_room	*spawns;
 	int		(*parsing[4]) (struct s_farm *farm, int *phase, char *line);
 }				t_farm;
-
-typedef struct	s_line_elem
-{
-	char				*re[5005];
-	int					fd;
-	int					st[5005];
-	int					s[5005];
-	int					flag[5005];
-	size_t				index;
-	char const			*delim;
-	struct s_line_elem	*nxt;
-	struct s_line_elem	*prev;
-}				t_line_elem;
 
 int				ft_chr_count(char *str, char c);
 
@@ -74,10 +61,14 @@ int				syntax_link(char *line);
 int				syntax_room(char *line);
 
 int				find_path(t_farm *farm, char *room);
-int				waxing_state(t_farm *farm, int path_i, int trailing_ant, int *end_ants);
-int				waning_state(t_farm *farm, int path_i, int trailing_ant, int edge);
-int				constant_state(t_farm *farm, int path_i, int trailing_ant, int edge);
-void			move_ants(t_farm *farm);
+int				waxing_state(t_farm *farm, int path_i,
+	int trailing_ant, int *end_ants);
+int				waning_state(t_farm *farm, int path_i,
+	int trailing_ant, int edge);
+int				constant_state(t_farm *farm, int path_i,
+	int trailing_ant, int edge);
+void			move_ants(t_farm *farm, int end_ants,
+	int edge, int trailing_ant);
 
 t_room			*t_room_build(char *name);
 void			t_room_print(t_room *room);
@@ -87,14 +78,4 @@ void			t_rooms_print(t_room *room);
 t_room			*t_room_get(t_room *head, char *name);
 int				t_room_valid_link(t_farm *farm, char *start, char *dest);
 void			t_room_destroy_all(t_room **room);
-
-
-
-
-
-
-# include											<stdio.h>
 #endif
-
-
-

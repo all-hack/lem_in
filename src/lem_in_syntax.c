@@ -14,7 +14,8 @@
 
 int	syntax_link(char *line)
 {
-	if (ft_chr_count(line, '-') == 1 && ft_chr_count(line, ' ') == 0)
+	if (*line != 0 && ft_chr_count(line, '-') == 1 &&
+		ft_chr_count(line, ' ') == 0)
 		return (1);
 	return (0);
 }
@@ -26,15 +27,15 @@ int	syntax_room(char *line)
 
 	if (ft_chr_count(line, ' ') == 2)
 	{
-		strlist = ft_strsplit(line, ' ');	
+		strlist = ft_strsplit(line, ' ');
 		if (ft_strlist_len(strlist) == 3
-			&& ft_strsearch_ov(strlist[1], "-0123456789") 
-			&& ft_strsearch_ov(strlist[2], "-0123456789") 
+			&& ft_strsearch_ov(strlist[1], "-0123456789")
+			&& ft_strsearch_ov(strlist[2], "-0123456789")
 			&& ft_strsearch_ov("-", strlist[0]) == 0)
-		{			
+		{
 			i = 0;
 			while (*strlist)
-			{				
+			{
 				ft_strdel(strlist);
 				i += 1;
 				strlist++;

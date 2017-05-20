@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   infa_t_farm.c                                   :+:      :+:    :+:   */
+/*   infa_t_farm.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelange <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-t_farm	*t_farm_build()
+t_farm	*t_farm_build(void)
 {
 	t_farm	*farm;
 
@@ -29,17 +29,11 @@ t_farm	*t_farm_build()
 	farm->end = NULL;
 	farm->path = NULL;
 	farm->spawns = NULL;
-	// farm->presentation_path = NULL;
-	// farm->filename = NULL;
-	// farm->pre_seed = NULL;
 	return (farm);
 }
 
 void	t_farm_print(t_farm *farm)
 {
-	// int i;
-
-	// i = 0;
 	ft_printf("\n");
 	ft_printf("t_farm:\n");
 	ft_printf("farm->num_ants: %d\n", farm->num_ants);
@@ -47,34 +41,6 @@ void	t_farm_print(t_farm *farm)
 	ft_printf("farm->end: %s\n", farm->end);
 	ft_printf("farm->map:\n%s", farm->map);
 	t_rooms_print(farm->spawns);
-	// ft_printf("farm->index: %d\n", farm->index);
-	// ft_printf("farm->chr: %s\n", farm->chr);
-	// if (farm->invalid)
-	// 	while (farm->invalid[i])
-	// 	{
-	// 		ft_printf("farm->invalid[%d]: %s\n", i, farm->invalid[i]);
-	// 		i++;
-	// 	}
-}
-
-t_farm	*t_farm_init(t_farm *farm)
-{
-	if (farm)
-	{
-		// farm->blah = 4;
-		// if (index == -1)
-		// 	farm->index = 1;
-		// else
-		// 	farm->index = index;
-
-		// if (chr)
-		// 	farm->chr = chr;
-		// else
-		// 	farm->chr = ".";
-		// return (farm);
-	}
-	// t_farm_destroy(&farm);
-	return (NULL);
 }
 
 void	t_farm_destroy(t_farm **farm)
@@ -85,6 +51,7 @@ void	t_farm_destroy(t_farm **farm)
 		{
 			ft_strdel(&(*farm)->map);
 			t_room_destroy_all(&(*farm)->spawns);
+			ft_strlist_del(&(*farm)->path);
 			free(*farm);
 			*farm = NULL;
 		}

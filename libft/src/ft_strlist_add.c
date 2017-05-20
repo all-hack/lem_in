@@ -25,16 +25,16 @@ char	**ft_strlist_add(char **strlist, char *str)
 		{
 			new_strlist[i] = strlist[i];
 			i++;
-		}		
+		}
 		new_strlist[i] = ft_strdup(str);
 		free(strlist);
 		return (new_strlist);
 	}
 	else if (str)
-	{		
+	{
 		new_strlist = ft_strlist_build(1);
 		new_strlist[0] = ft_strdup(str);
 		return (new_strlist);
-	}	
+	}
 	return (NULL);
 }

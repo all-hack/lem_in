@@ -15,8 +15,10 @@
 int	ft_printf_putstr(char const *s, t_mod *conv)
 {
 	size_t	len;
+	char	*str;
 
 	len = 0;
+	str = (char*)s;
 	if (s)
 	{
 		len += ft_printf_strlen(s);
@@ -29,6 +31,7 @@ int	ft_printf_putstr(char const *s, t_mod *conv)
 			s++;
 		}
 	}
+	ft_printf_strdel(&str);
 	ft_printf_free_struct(&conv);
 	return (len);
 }

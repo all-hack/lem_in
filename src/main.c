@@ -12,7 +12,6 @@
 
 #include "lem_in.h"
 
-
 void	read_from_stdin(t_farm *farm)
 {
 	int		phase;
@@ -22,70 +21,34 @@ void	read_from_stdin(t_farm *farm)
 
 	phase = 0;
 	i = 0;
-	line = NULL;	
-	while((get_next_line(0, &line)) > 0)
+	line = NULL;
+	while ((get_next_line(0, &line)) > 0)
 	{
 		ret = 1;
 		i = 0;
 		while (ret == 1)
-		{
-			// printf("parse: %d\n", i);
 			ret = farm->parsing[i++](farm, &phase, line);
-		}
 		ft_strdel(&line);
 		if (ret == -1)
-			break;
-	}	
+			break ;
+	}
 }
 
-
-
-
-
-int	main(void){
-
+int		main(void)
+{
 	t_farm	*farm;
+	int		path_res;
 
-
+	path_res = -1;
 	farm = t_farm_build();
 	read_from_stdin(farm);
-
 	if (!farm->spawns || !farm->start || !farm->end)
 		helper_error("Error\n");
-	printf("%s\n", farm->map);
-
-	
-	int path_res = -1;
 	path_res = find_path(farm, farm->start);
 	if (path_res != 1)
 		helper_error("Error\n");
+	ft_printf("%s\n", farm->map);
 	farm->path = ft_strlist_remove(farm->path, farm->start);
-	// printf("path found: %d\n", path_res);
-	// printf("path-->\n");
-	// ft_strlist_print(farm->path);
-	// printf("move_ants: \n");
-	move_ants(farm);
-	
-
-
+	move_ants(farm, 0, ft_strlist_len(farm->path), 1);
 	t_farm_destroy(&farm);
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

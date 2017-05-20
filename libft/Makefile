@@ -36,7 +36,7 @@ FILES += ft_1chr_nsym ft_intmax_atoi ft_fstrappend ft_fstrinsert ft_fstrmcat \
 ft_itoa_base ft_nchr_1sym ft_shiftstr ft_strchri
 
 # ft_ls
-FILES += ft_fstrdup ft_fstrlist_add ft_fstrmcatf ft_strcut_c0 ft_strlist_add \
+FILES += ft_fstrdup ft_fstrmcatf ft_strcut_c0 ft_strlist_add \
 ft_strlist_build ft_strlist_del ft_strlist_findindex ft_strlist_len \
 ft_strlist_minus ft_strlist_print ft_strlist_remove ft_strmcatf \
 ft_strsearch_ov

@@ -26,7 +26,7 @@ FILES += t_farm_infa lem_in_path
 
 FILES += ft_chr_count
 
-FILES += t_room_infa
+FILES += t_room_infa t_room_helper
 
 FILES += 
 
@@ -56,6 +56,7 @@ all : $(NAME)
 
 $(NAME) : $(B_PATH) $(OBJ) libft.a libftprintf.a
 	@echo ""
+	@echo ""
 	gcc $(FLAGS) -o $(NAME) $(OBJ) $(LIB_COMP)
 
 run : fclean $(B_PATH) $(OBJ) libft.a libftprintf.a
@@ -65,7 +66,7 @@ run : fclean $(B_PATH) $(OBJ) libft.a libftprintf.a
 dev : fclean $(B_PATH) $(OBJ) libft.a libftprintf.a
 	gcc $(DEVF) -o $(NAME) $(OBJ) $(LIB_COMP)
 
-leak : fclean $(B_PATH) $(OBJ) libft.a  libftprintf.a
+leak : $(B_PATH) $(OBJ) libft.a  libftprintf.a
 	@echo "\x1b[31malloc wrap is turned on\x1b[36m"
 	gcc $(LEAKF) -o $(NAME) $(OBJ) $(LIB_COMP)
 

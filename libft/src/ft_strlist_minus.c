@@ -25,7 +25,7 @@ char	**ft_strlist_minus(char **strlist)
 		len = ft_strlist_len(strlist);
 		new_strlist = ft_strlist_build(len - 1);
 		while (i < len - 1)
-		{			
+		{
 			new_strlist[i] = strlist[i];
 			i++;
 		}

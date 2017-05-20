@@ -22,16 +22,8 @@ void	ft_strcut_c0(char *s, char c)
 		start = 0;
 		length = ft_strlen(s);
 		if (length > 0)
-			while (*(s + length - 1) == c)				
-				s[length--] = '\0';		
+			while (*(s + length - 1) == c)
+				s[length--] = '\0';
 	}
 	return ;
 }
-
-
-
-
-
-
-
-

@@ -15,7 +15,7 @@
 void	ft_strlist_print(char **strlist)
 {
 	size_t	i;
-	
+
 	if (strlist)
 	{
 		i = 0;

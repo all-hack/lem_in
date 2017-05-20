@@ -25,11 +25,12 @@ static int	recursive_loop(char const s, char const *c)
 }
 
 /*
-*	makes sure that string s only contains characters in alphabet c
-*	can also be used to make sure that string c does not contain 
-*		any chr in alphabet s 
-*			ft_strsearch_ov("-", str) == 0
+**	makes sure that string s only contains characters in alphabet c
+**	can also be used to make sure that string c does not contain
+**		any chr in alphabet s
+**			ft_strsearch_ov("-", str) == 0
 */
+
 int			ft_strsearch_ov(char const *s, char const *c)
 {
 	if (s && c)

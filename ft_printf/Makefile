@@ -86,6 +86,11 @@ WC_OBJ = $(addsuffix .o, $(WC_OBJ_PRE))  $(SYMDET_OBJ)
 
 C_FLAGS = -Wall -Werror -Wextra
 DEV_FLAGS = $(C_FLAGS) -fsanitize=address
+LEAK_F = $(C_FLAGS) $(HOME)/Desktop/offence/tools/alloc_wrap.c -ldl
+ifdef ALLOCWRAP
+	C_FLAGS += $(HOME)/Desktop/offence/tools/alloc_wrap.c -ldl
+endif 
+
 
 .PHONY : all clean fclean dev re
 
@@ -95,19 +100,22 @@ $(NAME): build $(C_OBJ)
 	@ar rc $(NAME) $(C_OBJ)
 
 run : fclean build $(C_OBJ)
-	@gcc $(C_FLAGS) -o $(RUN) $(C_OBJ) -I ./include && ./$(RUN)
+	gcc $(C_FLAGS) -o $(RUN) $(C_OBJ) -I ./include && ./$(RUN)
+
+leak : build $(C_OBJ)
+	gcc $(LEAK_F) -o $(RUN) $(C_OBJ) -I ./include && ./$(RUN)
 
 wrun : fclean build $(WC_OBJ)
-	@gcc $(C_FLAGS) -o $(RUN) $(WC_OBJ) -I ./include && ./$(RUN)
+	gcc $(C_FLAGS) -o $(RUN) $(WC_OBJ) -I ./include && ./$(RUN)
 
 dev : fclean build $(C_OBJ)
-	@gcc $(DEV_FLAGS) -o $(RUN) $(C_OBJ) -I ./include && ./$(RUN)
+	gcc $(DEV_FLAGS) -o $(RUN) $(C_OBJ) -I ./include && ./$(RUN)
 
 $(B_PATH)%.o: $(S_PATH)%.c		
 	@gcc -c $< -o $@ -I ./include
 
 w : build $(WC_OBJ)
-	@ar rc $(NAME) $(WC_OBJ)
+	ar rc $(NAME) $(WC_OBJ)
 
 build : 
 	@mkdir -p build

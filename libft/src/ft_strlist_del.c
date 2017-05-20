@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_strlist_del(char	***strlist)
+void	ft_strlist_del(char ***strlist)
 {
 	size_t	i;
 
@@ -24,9 +24,9 @@ void	ft_strlist_del(char	***strlist)
 			while ((*strlist)[i])
 			{
 				ft_strdel(&((*strlist)[i++]));
-			}	
+			}
 			free(*strlist);
-			*strlist = NULL;  
+			*strlist = NULL;
 		}
 	}
 }

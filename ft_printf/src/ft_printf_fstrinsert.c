@@ -21,8 +21,13 @@ void	ft_printf_fstrinsert(char **printit, char *substr,
 	str = *printit;
 	tmp = ft_printf_fstrmcat(ft_printf_strsub(str, 0, strt), substr);
 	if (*tmp == '\0' && *(str + end) == '\0')
+	{
 		*printit = NULL;
+		ft_printf_strdel(&tmp);
+	}
 	else
+	{
 		*printit = ft_printf_fstrmcat(tmp, (str + end));
+	}
 	ft_printf_strdel(&str);
 }

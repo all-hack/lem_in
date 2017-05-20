@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t	ft_strlist_len(char	**strlist)
+size_t	ft_strlist_len(char **strlist)
 {
 	size_t	i;
 
@@ -20,7 +20,7 @@ size_t	ft_strlist_len(char	**strlist)
 	if (strlist)
 	{
 		while (strlist[i])
-			i++;		
+			i++;
 	}
 	return (i);
 }

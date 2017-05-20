@@ -25,7 +25,7 @@ void	ft_printf_reset_struct(t_mod **this)
 		if ((*this)->conversion)
 			ft_printf_dfree_hack(&((*this)->conversion));
 		if ((*this)->substring)
-			ft_printf_dfree_hack(&((*this)->substring));
+			ft_printf_strdel(&((*this)->substring));
 		if ((*this)->mfieldwidth)
 			ft_printf_dfree_hack(&((*this)->mfieldwidth));
 		if ((*this)->precision)
